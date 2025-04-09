@@ -48,7 +48,7 @@ Ensure you have a `test_image.jpg` in the `tests/` folder for the test to work.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/yolo-v11-fastapi.git
+git clone https://github.com/Saubhik998/yolo-v11-fastapi.git
 cd yolo-v11-fastapi
 ```
 
@@ -94,7 +94,7 @@ Then open `http://localhost:8000/docs` to test.
 
 ---
 
-## 📥 Sample Request
+##Sample Request
 
 You can test the `/detect/` endpoint using [Swagger UI](http://localhost:8000/docs) or using `curl`:
 
@@ -107,3 +107,6 @@ curl -X POST "http://localhost:8000/detect/" -F "file=@test_image.jpg"
 ## Model Info
 
 This project uses the **YOLOv11 Nano** model (`yolo11n.pt`) by Ultralytics, ideal for fast and lightweight inference.
+
+
+
