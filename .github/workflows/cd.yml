@@ -13,9 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build and Push the Image
+      - name: Convert username to lowercase
+        run: echo "IMAGE_NAME=ghcr.io/${GITHUB_ACTOR,,}/fastapiapi:latest" >> $GITHUB_ENV
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.actor }}/fastapiapi:latest
           docker build -t $IMAGE_NAME .
-          echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           docker push $IMAGE_NAME
