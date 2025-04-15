@@ -1,4 +1,5 @@
 name: Deploy fastAPI
+
 on:
   push:
     branches:
@@ -7,12 +8,14 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Build and Push the  Image
+      - name: Build and Push the Image
         run: |
-          docker build -t ghcr.io/${{ github.actor }}/fastapi-api:latest .
+          IMAGE_NAME=ghcr.io/${{ github.actor }}/fastapiapi:latest
+          docker build -t $IMAGE_NAME .
           echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-          docker push ghcr.io/${{ github.actor }}/fastapi-api:latest
+          docker push $IMAGE_NAME
